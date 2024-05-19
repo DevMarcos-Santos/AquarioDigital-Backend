@@ -24,7 +24,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(authorize -> authorize.requestMatchers( "/users/create",
+                .authorizeHttpRequests(authorize -> authorize.requestMatchers( "/users/create", "/peixes/find", "/peixes/*",
                         "/users/auth",
                         "/v3/api-docs/**",
                           "/v2/api-docs.yaml",

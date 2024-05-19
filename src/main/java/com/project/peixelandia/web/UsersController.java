@@ -69,7 +69,13 @@ public class UsersController {
         var EmailPassword = new UsernamePasswordAuthenticationToken(userDTO.email(), userDTO.password());
         var auth = this.authenticationManager.authenticate(EmailPassword);
         var token = tokenService.generateToken((Users) auth.getPrincipal());
-        return ResponseEntity.ok(new LoginResponseDto(token));
+        return ResponseEntity.ok(new LoginResponseDto(userDTO.email(), token ));
+    }
+
+
+    @GetMapping("/validateToken")
+    public ResponseEntity validateToken(){
+        return ResponseEntity.ok("Successful");
     }
 
 

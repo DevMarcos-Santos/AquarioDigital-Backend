@@ -5,13 +5,12 @@ import com.project.peixelandia.domain.services.PeixesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
+@CrossOrigin( originPatterns = "*")
 @RestController
 @RequestMapping("/peixes")
 public class PeixesController {
@@ -24,11 +23,18 @@ public class PeixesController {
         List<Peixes> result = peixesService.buscarPeixes(
                 peixes.getNome(),
                 peixes.getNome_cientifico(),
-                peixes.getTipo_de_agua(),
                 peixes.getPaises(),
+                peixes.getTipo_de_agua(),
+                peixes.getTamanho(),
                 peixes.getCor(),
                 peixes.getTemperamento()
         );
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Peixes>> peixeId(@PathVariable("id") Integer id){
+        Optional<Peixes> result = peixesService.peixePorId(id);
+        return new ResponseEntity<Optional<Peixes>>(result, HttpStatus.OK);
     }
 }
