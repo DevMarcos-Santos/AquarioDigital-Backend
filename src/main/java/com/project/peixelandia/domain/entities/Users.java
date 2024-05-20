@@ -25,9 +25,7 @@ public class Users implements UserDetails {
     @NotNull
     private String surname;
 
-    @Column
-    @NotNull
-    private Integer age;
+
 
     @Column
     @NotNull
@@ -85,13 +83,7 @@ public class Users implements UserDetails {
         this.surname = surname;
     }
 
-    public Integer getAge() {
-        return age;
-    }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
 
     public String getEmail() {
         return email;
