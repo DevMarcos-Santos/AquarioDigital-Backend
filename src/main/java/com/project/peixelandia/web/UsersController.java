@@ -58,8 +58,22 @@ public class UsersController {
         return ResponseEntity.ok(usersService.UserConfirm(user, code));
     }
 
+    @PostMapping("/confirmCodePassword")
+    public ResponseEntity<Users> createConfirmCode(@RequestBody Users user){
+        return ResponseEntity.ok(this.usersService.passwordRecuperation(user));
+    }
+
+    @PostMapping("/passwordUpdate/{code}")
+    public ResponseEntity<Users> updatePassword(@RequestBody Users user, @PathVariable Integer code){
+        user.setPassword(securityConfig.passwordEncoder().encode(user.getPassword()));
+        return ResponseEntity.ok(usersService.passwordConfirm(user, code));
+    }
 
 
+    @GetMapping("/findId/{email}")
+    public ResponseEntity<Users> findById(@PathVariable String email){
+        return ResponseEntity.ok( usersService.getId(email));
+    }
 
 
     @PostMapping("/auth")

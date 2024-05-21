@@ -30,6 +30,7 @@ public class UsersService{
     private EmailService emailService;
 
     private Map<String, Integer> verificationCodes = new HashMap<>();
+    private Map<String, Integer> recuperationCodes = new HashMap<>();
 
 
 
@@ -39,7 +40,7 @@ public class UsersService{
         if(exists == null){
             Random rand = new Random();
             int number = 1000 + rand.nextInt(9000);
-            emailService.envioEmail(user.getEmail(), "TESTE", String.valueOf(number));
+            emailService.envioEmail(user.getEmail(), "Código de Verificação", "SEGUE O CÓDIGO DE VERIFICAÇÃO: " + String.valueOf(number));
             verificationCodes.put(user.getEmail(), number);
 
             return user;
@@ -62,6 +63,28 @@ public class UsersService{
         return user;
     }
 
+    public Users passwordRecuperation(Users user){
+        Random rand = new Random();
+        int number = 1000 + rand.nextInt(9000);
+        emailService.envioEmail(user.getEmail(), "Recuperação de senha", "SEGUE O CÓDIGO DE RECUPERAÇÃO: " + String.valueOf(number) );
+        recuperationCodes.put(user.getEmail(), number);
+        return user;
+    }
+
+    public Users getId(String email){
+         return userRepository.findByEmail(email);
+    }
+
+    public Users passwordConfirm(Users user, Integer code){
+        Integer digito = recuperationCodes.get(user.getEmail());
+        if(code.equals(digito)){
+            usersRepository.save(user);
+            recuperationCodes.remove(user.getEmail());
+        }else{
+            throw new  RuntimeException("Digito incorreto");
+        }
+        return user;
+    }
 
 
 

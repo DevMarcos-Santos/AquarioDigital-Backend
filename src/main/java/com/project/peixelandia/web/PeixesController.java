@@ -37,4 +37,5 @@ public class PeixesController {
         Optional<Peixes> result = peixesService.peixePorId(id);
         return new ResponseEntity<Optional<Peixes>>(result, HttpStatus.OK);
     }
+
 }
