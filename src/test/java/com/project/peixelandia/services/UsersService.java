@@ -43,7 +43,6 @@ public class UsersService{
         user.setEmail("email");
         user.setPassword("password");
         user.setCreation_date(LocalDate.now());
-        user.setAge(19);
         Mockito.when(usersRepository.save(user)).thenReturn(user);
 
 

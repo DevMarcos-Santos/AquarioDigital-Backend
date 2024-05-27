@@ -11,12 +11,15 @@
 	<groupId>com.project</groupId>
 	<artifactId>peixelandia</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+
 	<name>peixelandia</name>
 	<description>Project for peixeladia</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
+
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -26,6 +29,8 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -41,6 +46,7 @@
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
