@@ -58,6 +58,7 @@ public class PeixesService {
                     criteriaBuilder.like(root.get("temperamento"), "%"+temperamento+"%" ));
 
         }
+
         return peixesRepository.findAll(specification);
     }
 }

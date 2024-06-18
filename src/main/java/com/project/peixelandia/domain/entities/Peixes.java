@@ -39,8 +39,19 @@ public class Peixes {
     @Column(length = 50, name = "temperamento")
     private String temperamento;
 
+    @Column(length = 245, name = "title")
+    private String title;
+
     public int getId() {
         return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setId(int id) {

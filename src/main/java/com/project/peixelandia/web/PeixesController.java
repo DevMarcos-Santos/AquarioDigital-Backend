@@ -28,6 +28,7 @@ public class PeixesController {
                 peixes.getTamanho(),
                 peixes.getCor(),
                 peixes.getTemperamento()
+
         );
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
