@@ -1,6 +1,8 @@
 package com.project.peixelandia.domain.services;
 
+import com.project.peixelandia.domain.entities.Profile;
 import com.project.peixelandia.domain.entities.Users;
+import com.project.peixelandia.domain.repositories.ProfileRepository;
 import com.project.peixelandia.domain.repositories.UserRepository;
 import com.project.peixelandia.domain.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,9 @@ public class UsersService{
     @Autowired
     private EmailService emailService;
 
+    @Autowired
+    private ProfileRepository profileRepository;
+
     private Map<String, Integer> verificationCodes = new HashMap<>();
     private Map<String, Integer> recuperationCodes = new HashMap<>();
 
@@ -54,7 +59,11 @@ public class UsersService{
     public Users UserConfirm(Users user, Integer digito){
         Integer code = verificationCodes.get(user.getEmail());
         if(digito.equals(code)){
+
+            Profile prof = new Profile();
+            prof.setUserId(user);
             usersRepository.save(user);
+            profileRepository.save(prof);
             verificationCodes.remove(user.getEmail());
         }else{
             throw new  RuntimeException("Digito incorreto");

@@ -27,6 +27,7 @@ public class Users implements UserDetails {
 
 
 
+
     @Column
     @NotNull
     private String email;
@@ -37,6 +38,7 @@ public class Users implements UserDetails {
 
     @Column
     private LocalDate creation_date;
+
 
 
     public String getUsername(){
